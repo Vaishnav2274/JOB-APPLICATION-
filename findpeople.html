@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="jobApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find People - Job Finder</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- AngularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+    <script>
+        // AngularJS App
+        var app = angular.module('jobApp', []);
+
+        app.controller('FindPeopleController', function($scope) {
+            // Sample registered people data
+            $scope.people = [
+                { name: 'John Doe', job: 'Plumber', location: 'New York' },
+                { name: 'Jane Smith', job: 'Tailor', location: 'Los Angeles' },
+                { name: 'Alex Johnson', job: 'Electrician', location: 'Chicago' },
+                { name: 'Emily Davis', job: 'Plumber', location: 'Los Angeles' }
+            ];
+
+            // Filter options
+            $scope.filterLocation = '';
+            $scope.filterJob = '';
+
+            // Filter people by location and job
+            $scope.filterPeople = function(person) {
+                if (($scope.filterLocation === '' || person.location === $scope.filterLocation) &&
+                    ($scope.filterJob === '' || person.job === $scope.filterJob)) {
+                    return true;
+                }
+                return false;
+            };
+        });
+    </script>
+</head>
+
+<body ng-controller="FindPeopleController">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">Job Finder</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Jobs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="signup.html">Sign Up</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Find People Section -->
+    <section id="find-people" class="container mt-5">
+        <h2 class="text-center">Find Registered People</h2>
+
+        <!-- Filter options -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <label for="location">Location:</label>
+                <select class="form-select" ng-model="filterLocation">
+                    <option value="">All</option>
+                    <option value="New York">New York</option>
+                    <option value="Los Angeles">Los Angeles</option>
+                    <option value="Chicago">Chicago</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="job">Job Category:</label>
+                <select class="form-select" ng-model="filterJob">
+                    <option value="">All</option>
+                    <option value="Plumber">Plumber</option>
+                    <option value="Tailor">Tailor</option>
+                    <option value="Electrician">Electrician</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- People listing -->
+        <div class="row">
+            <div class="col-md-4" ng-repeat="person in people | filter:filterPeople">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">{{person.name}}</h5>
+                        <p class="card-text">Job: {{person.job}}</p>
+                        <p class="card-text">Location: {{person.location}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center mt-5">
+        <p>&copy; 2024 Job Finder. All Rights Reserved.</p>
+    </footer>
+
+</body>
+
+</html>

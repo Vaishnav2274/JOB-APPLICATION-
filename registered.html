@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="employerApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Employees - Job Finder</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&family=Montserrat:wght@400&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <style>
+        body {
+            padding: 50px 0;
+            background-image: url('registeredbg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            font-family: 'Roboto', sans-serif;
+            color: #333;
+        }
+
+        #find-employees {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            width: 200px;
+            margin: 0 auto;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #007BFF;
+            text-align: center;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .employee-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .employee-card {
+            border-radius: 10px;
+            padding: 20px;
+            width: 300px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            background-color: #f8f9fa;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .employee-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .employee-card img {
+            border-radius: 10px;
+            max-height: 180px;
+            object-fit: cover;
+            margin-bottom: 15px;
+            transition: transform 0.3s;
+        }
+
+        .employee-card img:hover {
+            transform: scale(1.05);
+        }
+
+        .stars {
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: lightgray;
+            margin-top: 5px;
+        }
+
+        .rated {
+            color: gold;
+        }
+
+        .btn-home {
+            margin-bottom: 20px;
+            background-color: #007BFF;
+            border: none;
+            color: #fff;
+        }
+
+        .btn-home:hover {
+            background-color: #0056b3;
+        }
+
+        @media (max-width: 768px) {
+            .employee-card {
+                width: 100%;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+
+    <!-- AngularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+    <script>
+        var app = angular.module('employerApp', []);
+
+        app.controller('EmployerController', function ($scope) {
+            $scope.searchInput = ""; // Initialize search input
+            $scope.selectedJob = "";  // Initialize selected job
+
+            $scope.employees = [
+                { name: 'John Doe', job: 'Plumber', skills: 'Pipe fitting, Leak repair', email: 'john.doe@example.com', rating: 4, phone: '9876543210', address: '123 Main St, Mumbai, Maharashtra', pincode: '400001', area: 'Downtown', image: 'johndoe.jpg' },
+                { name: 'Jane Smith', job: 'Electrician', skills: 'Wiring, Circuit breaker installation', email: 'jane.smith@example.com', rating: 5, phone: '9123456780', address: '456 Elm St, Pune, Maharashtra', pincode: '411001', area: 'Uptown', image: 'janesmith.jpg' },
+                { name: 'Emily Johnson', job: 'Tailor', skills: 'Dressmaking, Alterations', email: 'emily.johnson@example.com', rating: 3, phone: '9871234567', address: '789 Maple St, Bengaluru, Karnataka', pincode: '560001', area: 'Suburbs', image: 'emilyjohnson.jpg' },
+                { name: 'Mark Davis', job: 'Potter', skills: 'Wheel throwing, Kiln operation', email: 'mark.davis@example.com', rating: 4, phone: '9632587410', address: '159 Oak St, Chennai, Tamil Nadu', pincode: '600001', area: 'Riverside', image: 'markdavis.jpg' },
+                { name: 'Sarah Williams', job: 'Maid', skills: 'Housekeeping, Laundry', email: 'sarah.williams@example.com', rating: 2, phone: '9517538520', address: '753 Pine St, Delhi', pincode: '110001', area: 'Hillside', image: 'sarahwilliams.jpg' },
+                { name: 'David Brown', job: 'Cleaner', skills: 'Office cleaning, Sanitization', email: 'david.brown@example.com', rating: 4, phone: '8524569632', address: '357 Birch St, Hyderabad', pincode: '500001', area: 'Lakeview', image: 'davidbrown.jpg' },
+                { name: 'Laura Wilson', job: 'Car Washer', skills: 'Exterior washing, Interior detailing', email: 'laura.wilson@example.com', rating: 5, phone: '7894561230', address: '951 Cedar St, Ahmedabad, Gujarat', pincode: '380001', area: 'Seaside', image: 'laurawilson.jpg' },
+                { name: 'Michael Miller', job: 'Agricultural Helper', skills: 'Planting, Harvesting', email: 'michael.miller@example.com', rating: 3, phone: '3216549870', address: '258 Walnut St, Jaipur, Rajasthan', pincode: '302001', area: 'Countryside', image: 'michaelmiler.jpg' },
+                { name: 'Anna Garcia', job: 'Cook', skills: 'Meal preparation, Menu planning', email: 'anna.garcia@example.com', rating: 4, phone: '6543219870', address: '369 Chestnut St, Kolkata', pincode: '700001', area: 'Market Square', image: 'annagarcia.jpg' },
+                { name: 'Robert Martinez', job: 'Driver', skills: 'Driving', email: 'robert.martinez@example.com', rating: 5, phone: '7891234560', address: '789 Spruce St, Surat, Gujarat', pincode: '395001', area: 'City Center', image: 'robertmartinez.jpg' },
+                { name: 'Susan Anderson', job: 'Painter', skills: 'Interior painting, Exterior painting', email: 'susan.anderson@example.com', rating: 4, phone: '4567891230', address: '321 Fir St, Noida, Uttar Pradesh', pincode: '201301', area: 'Hilltop', image: 'susananderson.jpg' },
+            ];
+
+            $scope.searchEmployees = function () {
+                let filteredEmployees = $scope.employees.filter(emp => {
+                    let matchesSearch = !$scope.searchInput || 
+                        emp.name.toLowerCase().includes($scope.searchInput.toLowerCase()) || 
+                        emp.skills.toLowerCase().includes($scope.searchInput.toLowerCase());
+                    let matchesJob = !$scope.selectedJob || emp.job === $scope.selectedJob;
+                    return matchesSearch && matchesJob;
+                });
+                return filteredEmployees;
+            };
+        });
+    </script>
+</head>
+
+<body ng-controller="EmployerController">
+
+    <!-- Home Button and Logo -->
+    <div class="container text-center">
+        <a href="index.html" aria-label="Go to Home">
+            <img src="logo.png" alt="Logo" class="logo" />
+        </a>
+        <a href="index.html" class="btn btn-home">Go to Home</a>
+    </div>
+
+    <!-- Main Content -->
+    <div id="find-employees" class="container">
+        <h1>Find Employees</h1>
+
+        <div class="input-group">
+            <input type="text" ng-model="searchInput" class="form-control" placeholder="Search by Name or Skills" aria-label="Search" />
+            <select ng-model="selectedJob" class="form-select" aria-label="Select Job">
+                <option value="">Select Job</option>
+                <option value="Plumber">Plumber</option>
+                <option value="Electrician">Electrician</option>
+                <option value="Tailor">Tailor</option>
+                <option value="Potter">Potter</option>
+                <option value="Maid">Maid</option>
+                <option value="Cleaner">Cleaner</option>
+                <option value="Car Washer">Car Washer</option>
+                <option value="Agricultural Helper">Agricultural Helper</option>
+                <option value="Cook">Cook</option>
+                <option value="Driver">Driver</option>
+                <option value="Painter">Painter</option>
+            </select>
+        </div>
+
+        <div class="employee-list">
+            <div class="employee-card" ng-repeat="employee in searchEmployees()">
+                <img ng-src="{{employee.image}}" alt="{{employee.name}}" class="img-fluid" />
+                <h2>{{employee.name}}</h2>
+                <h5>{{employee.job}}</h5>
+                <p><strong>Skills:</strong> {{employee.skills}}</p>
+                <p><strong>Email:</strong> {{employee.email}}</p>
+                <p><strong>Phone:</strong> {{employee.phone}}</p>
+                <p><strong>Address:</strong> {{employee.address}}</p>
+                <p><strong>Pincode:</strong> {{employee.pincode}}</p>
+                <p><strong>Area:</strong> {{employee.area}}</p>
+                <div class="stars">
+                    <span ng-repeat="star in [].constructor(5)" ng-class="{'rated': star < employee.rating}" ng-click="employee.rating = star + 1">&#9733;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FindWithUs - Home</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            padding: 50px 0;
+            background-color: #f8f9fa;
+        }
+
+        .carousel-item {
+            height: 400px; /* Set the height for the carousel items */
+        }
+
+        .carousel-item img {
+            height: 100%; /* Make images fill the height */
+            object-fit: cover; /* Maintain aspect ratio */
+        }
+
+        .hero {
+            color: rgb(255, 254, 254);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            height: 200px; /* Adjust height as needed */
+            background: rgba(0, 0, 0, 0.5); /* Optional: Add a semi-transparent background for better text visibility */
+        }
+
+        .navbar-brand {
+            padding-left: 0; /* Remove default padding */
+            margin-left: 0;  /* Remove default margin */
+        }
+
+        .navbar {
+            padding: 10px 20px;
+        }
+
+        .navbar-brand img {
+            height: 40px; /* Set desired height for the logo */
+            width: auto;
+            margin-right: auto; /* This ensures the logo aligns to the extreme left */
+        }
+
+        .container-fluid {
+            padding-left: 0; /* Remove default padding from container-fluid */
+        }
+    </style>
+</head>
+
+<body>
+    <header class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="index.html">
+                <img src="logo.png" alt="FindWithUs Logo"> <!-- Replaced text with logo image -->
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="signup.html">Sign Up</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="registered.html">Find Registered Employees</a> <!-- New Link -->
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-primary" href="application.html">Apply for Jobs</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Carousel Section -->
+    <div id="jobCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="tailor.jpg" class="d-block w-100" alt="Tailor">
+                <div class="hero">
+                    <h1>Skilled Tailors</h1>
+                    <p>Expert tailors bring creativity and precision to every garment. Whether you need custom clothing or alterations, skilled tailors can help you achieve the perfect fit and style for any occasion. Explore our platform to find local tailors who can meet your unique fashion needs.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="electrician.jpeg" class="d-block w-100" alt="Electrician">
+                <div class="hero">
+                    <h1>Professional Electricians</h1>
+                    <p>Professional electricians are essential for ensuring safety and efficiency in electrical installations and repairs. From residential wiring to commercial electrical systems, qualified electricians possess the skills to handle any electrical challenge. Connect with certified electricians to get your projects done right.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="plumber.jpg" class="d-block w-100" alt="Plumber">
+                <div class="hero">
+                    <h1>Expert Plumbers</h1>
+                    <p>Expert plumbers are your go-to professionals for all plumbing issues, from installations to emergency repairs. With their knowledge of plumbing systems, they can resolve leaks, clogs, and more, ensuring your home or business runs smoothly. Find reliable plumbers in your area for top-notch service.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="maid.png" class="d-block w-100" alt="Maid">
+                <div class="hero">
+                    <h1>Reliable Maids</h1>
+                    <p>Reliable maids offer cleaning and household management services tailored to your needs. They ensure a tidy, organized home, allowing you to focus on what matters most. Connect with professional maids to maintain a clean and welcoming environment.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="driver.jpg" class="d-block w-100" alt="Driver">
+                <div class="hero">
+                    <h1>Experienced Drivers</h1>
+                    <p>Experienced drivers provide safe and reliable transportation services for various needs. Whether it's for personal errands or professional commitments, skilled drivers ensure a smooth and punctual journey. Find drivers who can meet your travel requirements.</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#jobCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#jobCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <section class="container mt-5 text-center">
+        <h2>Why Choose Us?</h2>
+        <p>FindWithUs connects job seekers with employers easily and effectively.</p>
+        <div class="row">
+            <div class="col-md-4">
+                <h3>For Job Seekers</h3>
+                <p>Explore various job opportunities in your area.</p>
+            </div>
+            <div class="col-md-4">
+                <h3>For Employers</h3>
+                <p>Find the right talent to fulfill your requirements.</p>
+            </div>
+            <div class="col-md-4">
+                <h3>Support</h3>
+                <p>Get assistance whenever you need it.</p>
+                <a class="btn btn-link" href="support.html">Click here for support</a> <!-- Link to Support Page -->
+            </div>
+        </div>
+    </section>
+
+    <footer class="text-center mt-5">
+        <p>&copy; 2024 FindWithUs. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
